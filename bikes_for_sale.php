@@ -113,7 +113,6 @@ function showDetails(e) {
 
     ta = document.createElement("textarea");
     ta.innerHTML = e.attributes["data-description"].nodeValue;
-    // dlg.querySelector(".bikeDescription").innerText = ta.value;
     dlg.querySelector(".bikeDescription").innerHTML = getFullDescription(ta.value);
 
     imgURL = e.getElementsByTagName("img")[0].attributes["src"].nodeValue;
@@ -132,7 +131,7 @@ function getFullDescription(bikeDescription, bikeIndexUrl) {
 
     let result = bikeDescription + "<br/><br/><span style=\"font-size:14px\">" + postAmbleStart;
     if (bikeIndexUrl) {
-        result += bikeIndexInfo + "<br/><br/>" + bikeIndexUrl;
+        result += bikeIndexInfo + "<br/><br/>" + bikeIndexUrl + "<br/><br/>";
     }
     result += postAmbleEnd +"</span>";
     return result;
