@@ -22,6 +22,13 @@
     padding-top: 10px;
 }
 
+.storeBikePrice {
+    background-color: green !important;
+    font-size: 15px !important;
+    margin-left: 15px;
+    padding-top: 4px !important;
+}
+
 .bikePrice {
 	position: absolute;
 	right: 15px;
@@ -71,7 +78,7 @@ while ( have_posts() ) : the_post();
             }
             ?><div class="well storeBike" onclick="showDetails(this)" data-description="<?php echo htmlentities($info->description) ?>">
                 <img src="<?php echo $imageURI ?>">
-                <div class="storeBikeTitle"><?php echo $bikeDirName . " – " . $info->price ?></div>
+                <div class="storeBikeTitle"><?php echo $bikeDirName . '<span class="storeBikePrice badge">' . $info->price . '</span>' ?></div>
             </div><?php
         }
     }
@@ -107,9 +114,10 @@ function hideDetails(e) {
 
 function showDetails(e) {
     dlg = document.getElementById("dlgBikeDetails");
-    titleParts = e.querySelector(".storeBikeTitle").innerText.split("–");
-    dlg.querySelector(".modal-title").innerText = titleParts[0].trim();
-    dlg.querySelector(".badge").innerText = titleParts[1].trim();
+    let title = e.querySelector(".storeBikeTitle").firstChild.data.trim();
+    let price = e.querySelector(".storeBikePrice").innerText.trim();
+    dlg.querySelector(".modal-title").innerText = title;
+    dlg.querySelector(".badge").innerText = price;
 
     ta = document.createElement("textarea");
     ta.innerHTML = e.attributes["data-description"].nodeValue;
